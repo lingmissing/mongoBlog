@@ -60,7 +60,7 @@ gulp.task('hbs', function () {
  * 编译js
  */
 gulp.task('js', function () {
-    return gulp.src('js/*.js')
+    return gulp.src('src/js/*.js')
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(requirejsOptimize({
             keepBuildDir: true,
@@ -71,4 +71,10 @@ gulp.task('js', function () {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/js'));
 });
-
+/**
+ * 编译libs
+ */
+gulp.task('libs', function () {
+    return gulp.src('plugin/*.js')
+        .pipe(gulp.dest('./dist/plugin'));
+});

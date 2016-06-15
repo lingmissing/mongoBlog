@@ -1,4 +1,8 @@
-$(function() {
+define(function(require){
+	var $ = require('jquery');
+	var handlebars = require('handlebars');
+	var db = require('./db');
+
 	db.transaction(function(context) {
 		context.executeSql('SELECT * FROM basicInfo', [], function(context, results) {
 			var len = results.rows.length;
