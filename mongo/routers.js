@@ -108,7 +108,8 @@ router.post('/getArticleByTitle', function (req, res) {
   })
 })
 // 查询所有种类
-// 查询所有标签
+// 添加种类
+// 删除种类
 // 根据种类查询
 router.post('/getArticleByCat', function (req, res) {
   const { page, pagesize, category } = req.body

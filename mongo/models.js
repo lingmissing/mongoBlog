@@ -11,9 +11,13 @@ const userSchema = new Schema({
 const articleSchema = new Schema({
   title: { type: String, required: true },
   date: String,
-  tag: { type: String, required: true },
-  category: { type: String, required: true },
-  content: { type: String, required: true }
+  tag: String,
+  category: String,
+  content: String
+})
+
+const categorySchema = new Schema({
+  name: { type: String, required: true }
 })
 
 const linkSchema = new Schema({
@@ -24,9 +28,9 @@ const linkSchema = new Schema({
 const Models = {
   User: mongoose.model('User', userSchema),
   Article: mongoose.model('Article', articleSchema),
+  Category: mongoose.model('Category', categorySchema),
   Link: mongoose.model('Link', linkSchema),
-  initialized: false,
-  _id: false
+  initialized: false
 }
 
 const initialize = function () {

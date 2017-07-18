@@ -3,25 +3,23 @@ import PropTypes from 'prop-types'
 import './AddArtical.scss'
 
 class AddArtical extends Component {
-
-  static propTypes = {
-  }
+  static propTypes = {}
 
   constructor (props) {
     super(props)
     this.state = {}
   }
 
-  componentWillMount () {
-  }
+  componentWillMount () {}
 
-  componentWillUnmount () {
-  }
+  componentWillUnmount () {}
 
   render () {
     return (
-      <div>
-        <h1>AddArtical</h1>
+      <div className="add-artical">
+        <div className="aside-artical">1</div>
+        <div className="middle-artical">2</div>
+        <div className="main-artical">3</div>
       </div>
     )
   }

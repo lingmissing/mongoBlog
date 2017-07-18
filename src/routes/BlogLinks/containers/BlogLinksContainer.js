@@ -7,8 +7,7 @@ const mapActionCreators = {
 }
 
 const mapStateToProps = (state) => ({
-  blogLinks: state.blogLinks,
-  mainLayout: state.mainLayout
+  blogLinks: state.blogLinks
 })
 
 export default connect(mapStateToProps, mapActionCreators)(BlogLinks)

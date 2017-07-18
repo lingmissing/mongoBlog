@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Fetch, { baseUrl } from '../../../Fetch'
+import Fetch, { baseUrl } from 'root/Fetch'
 
 class HomeView extends Component {
   uploadFiles (e) {

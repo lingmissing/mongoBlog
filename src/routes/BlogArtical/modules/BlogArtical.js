@@ -1,5 +1,5 @@
 import { createAction } from 'redux-act'
-import Fetch from 'src/Fetch'
+import Fetch from 'root/Fetch'
 
 // ------------------------------------
 // Actions
@@ -8,9 +8,7 @@ export const clearAll = createAction('清除列表信息')
 
 export const doubleAsync = () => {
   return (dispatch, getState) => {
-    dispatch(Fetch('_name', {}))
-    .then(response => {
-    })
+    dispatch(Fetch('_name', {})).then(response => {})
   }
 }
 
@@ -28,9 +26,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {
-
-}
+const initialState = {}
 export default function blogArticalReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

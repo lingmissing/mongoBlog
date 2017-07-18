@@ -1,35 +1,38 @@
 import { createAction } from 'redux-act'
-import Fetch from 'src/Fetch'
+import Fetch from 'root/Fetch'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const clearAll = createAction('清除列表信息')
+export const saveLink = createAction('保存链接')
 
-export const doubleAsync = () => {
+export const getAllLink = () => {
   return (dispatch, getState) => {
-    dispatch(Fetch('_name', {}))
-    .then(response => {
+    Fetch('getLink').then(response => {
+      dispatch(saveLink(response.data))
     })
   }
 }
 
 export const actions = {
-  clearAll
+  getAllLink
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [clearAll]: (state, action) => initialState
+  [saveLink]: (state, action) => ({
+    ...state,
+    links: action.payload
+  })
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = {
-
+  links: []
 }
 export default function blogLinksReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

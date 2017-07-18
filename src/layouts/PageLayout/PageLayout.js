@@ -1,21 +1,23 @@
-import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import React, { Component } from 'react'
+import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import './PageLayout.scss'
 
-export const PageLayout = ({ children }) => (
-  <div className='container text-center'>
-    <h1>React Redux Starter Kit</h1>
-    <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
-    <div className='page-layout__viewport'>
-      {children}
-    </div>
-  </div>
-)
-PageLayout.propTypes = {
-  children: PropTypes.node,
+class PageLayout extends Component {
+  static propTypes = {
+    children: PropTypes.node
+  }
+  render () {
+    const { children } = this.props
+    return (
+      <div className="container">
+        <Link to="/add-artical">add-artical</Link>
+        <div className="page-layout__viewport">
+          {children}
+        </div>
+      </div>
+    )
+  }
 }
 
 export default PageLayout

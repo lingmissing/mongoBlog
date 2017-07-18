@@ -1,8 +1,6 @@
-.page-layout__viewport {
-  padding-top: 4rem;
-}
-
-.page-layout__nav-item--active {
-  font-weight: bold;
-  text-decoration: underline;
+.container {
+  height: 100%;
+  .page-layout__viewport {
+    height: 100%;
+  }
 }
