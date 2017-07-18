@@ -18,3 +18,28 @@ body {
 *:after {
   box-sizing: inherit;
 }
+
+.icon-add {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  &:before,
+  &:after {
+    content: '';
+    height: 4px;
+    width: 12px;
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 4px;
+    left: 0;
+  }
+  &:after {
+    height: 12px;
+    width: 4px;
+    top: 0;
+    left: 4px;
+  }
+}

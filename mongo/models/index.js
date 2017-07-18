@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const logger = require('./logger')
+const logger = require('../logger')
 const init = require('./init')
 const Schema = mongoose.Schema
 
@@ -15,6 +15,14 @@ const articleSchema = new Schema({
   category: String,
   content: String
 })
+articleSchema.statics.findArticalByPage = function (searchInfo, cb) {
+  return this.find(searchInfo.query)
+    .skip((searchInfo.page - 1) * searchInfo.pagesize)
+    .limit(searchInfo.pagesize)
+    .sort({ date: -1 })
+    .select('title')
+    .exec(cb)
+}
 
 const categorySchema = new Schema({
   name: { type: String, required: true }

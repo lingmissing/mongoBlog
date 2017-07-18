@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const routers = require('./routers')
+const routers = require('./routes')
 const app = express()
 const path = require('path')
 const multer = require('multer')
@@ -24,8 +24,10 @@ app.use((req, res, next) => {
   next()
 })
 app.use('/uploads', express.static(resolve('../uploads')))
-// 使用静态文件并创建虚拟路径
-app.use(routers)
+app.use(routers.articalRoutes)
+// app.use('/category', routers.categoryRoutes)
+// app.use('/link', routers.linkRoutes)
+// app.use('/user', routers.userRoutes)
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
