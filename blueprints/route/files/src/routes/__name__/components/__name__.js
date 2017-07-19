@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {} from 'antd'
 import './<%= pascalEntityName %>.scss'
 
 class <%= pascalEntityName %> extends Component {
-
+    
   static propTypes = {
   }
 
@@ -17,7 +18,7 @@ class <%= pascalEntityName %> extends Component {
 
   componentWillUnmount () {
   }
-
+  
   render () {
     return (
       <div>

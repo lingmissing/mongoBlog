@@ -1,5 +1,5 @@
 import { createAction } from 'redux-act'
-import Fetch from 'root/Fetch'
+import Fetch from 'root/lib/fetch'
 
 // ------------------------------------
 // Actions

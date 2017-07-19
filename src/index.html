@@ -1,11 +1,86 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <title>React Redux Starter Kit</title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
   <meta charset="utf-8">
+  <meta name="renderer" content="webkit" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .brower-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-left: -235px;
+      margin-top: -145px;
+      padding: 32px 0;
+      background: #fff;
+      z-index: 9999;
+      width: 470px;
+      height: 290px;
+      box-shadow: 0 0 16px 0 rgba(41,144,242,0.13);
+      border-radius: 2px;
+      border: 1px solid #f8f8f8;
+    }
+    .browser-img {
+      display: block;
+      margin: 0 auto;
+      width: 80px;
+      height: 80px;
+    }
+    .browser-tip {
+      font-size: 16px;
+      color: #3F3F3F;
+      text-align: center;
+      margin: 43px 0;
+    }
+    .browser-download {
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      display: block;
+      color: #3F3F3F;
+      margin: 0 auto;
+      border: 1px solid #E6E6E6;
+      border-radius: 16px;
+      text-decoration: none;
+    }
+    .browser-download:hover {
+      color: #3f3f3f;
+    }
+    .browser-close {
+      display: block;
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      cursor: pointer;
+    }
+
+  </style>
 </head>
 <body>
   <div id="root" style="height: 100%"></div>
+  <script>
+    function isAvailableBrowser () {
+      var userAgent = navigator.userAgent; // 取得浏览器的userAgent字符串
+      var isFF = userAgent.indexOf('Firefox') > -1;  // 判断是否Firefox浏览器
+      var isSafari = userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1;  // 判断是否Safari浏览器
+      var isChrome = userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Safari') > -1; // 判断Chrome浏览器
+      return isFF || isSafari || isChrome;
+    }
+    window.onload = function () {
+      if (!isAvailableBrowser()) {
+        var chromeModal = document.createElement('div');
+        chromeModal.innerHTML = '<div class="brower-content" id="brower-content"><img class="browser-close" id="browser-close" src="./close.png"></span><img class="browser-img" src="./chrome.png" /><p class="browser-tip">请使用chrome浏览器！</p><a class="browser-download" target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html">现在下载</a></div>';
+        document.body.appendChild(chromeModal);
+        document.getElementById('browser-close').onclick = function () {
+          var browerContent = document.getElementById('brower-content');   
+          browerContent.parentNode.removeChild(browerContent);
+        }
+      }
+    }
+  </script>
 </body>
 </html>

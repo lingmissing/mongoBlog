@@ -1,3 +1,6 @@
+.add-artical-content {
+  height: 100%;
+}
 .add-artical {
   height: 100%;
   display: flex;
@@ -134,5 +137,18 @@
         border: 1px solid transparent;
       }
     }
+  }
+}
+.artical-preview {
+  height: 100%;
+  display: flex;
+  .artical-edit-content {
+    flex: 1;
+    border-right: 1px solid #d9d9d9;
+  }
+  .artical-preview-content {
+    flex: 1;
+    background-color: #fcfaf2;
+    padding: 40px 40px 0 40px;
   }
 }

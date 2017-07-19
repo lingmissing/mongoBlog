@@ -1,0 +1,176 @@
+@import 'base';
+@import '~normalize.css/normalize';
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: PingFang-SC-Regular, Microsoft yahei;
+}
+.main-wapper {
+  padding: 10px 20px;
+  flex: 1;
+  overflow: hidden;
+}
+/* use css to set position of modal */
+.shadow-modal {
+  text-align: center;
+  white-space: nowrap;
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+  }
+  .ant-modal {
+    display: inline-block;
+    vertical-align: middle;
+    top: 0;
+    text-align: left;
+  }
+  .ant-modal-content {
+    box-shadow: 0 0 16px rgba(42, 145, 243, 0.13);
+  }
+  .ant-modal-title {
+    font-size: 20px;
+    color: #3f3f3f;
+  }
+  .ant-modal-header {
+    padding: 21px 16px;
+  }
+}
+.error-tip {
+  font-family: PingFangSC-Light, Microsoft yahei;
+  font-size: 10px;
+  color: #DD3636;
+  text-align: center;
+  display: block;
+  height: 15px;
+  white-space: nowrap;
+}
+// icon
+.sp-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+}
+.password-icon {
+  background-image: url(../assets/password.png);
+}
+.reset-password-icon {
+  background-image: url(../assets/confirmPassword.png);
+}
+.email-icon {
+  background-image: url(../assets/email.png)
+}
+.check-icon {
+  background-image: url(../assets/check.png)
+}
+.company-icon {
+  background-image: url(../assets/company.png)
+}
+.tax-icon {
+  background-image: url(../assets/number.png)
+}
+.go-back-link {
+  font-family: PingFangSC-Light, Microsoft yahei;
+  display: inline-block;
+  font-size: 10px;
+  color: #353535;
+  &:hover {
+    color: #353535;
+    text-decoration: underline;
+  }
+}
+
+// 状态
+.card-status {
+  display: block;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 18px;
+  color: #fff;
+  font-size: 10px;
+  position: absolute;
+  top: 22px;
+  right: 26px;
+}
+.is-new {
+  background: #EB6877;
+  &:after {
+    content: "new";
+  }
+}
+.is-reported {
+  background: #72BAF9;
+  &:after {
+    content: "已报";
+  }
+}
+.is-completed {
+  background: #72BAF9;
+  &:after {
+    content: "已完成";
+  }
+}
+.is-approve {
+  background: #EB6100;
+  &:after {
+    content: "已审";
+  }
+}
+.is-wait-approve {
+  background: #A3DD24;
+  &:after {
+    content: "待审";
+  }
+}
+.is-not-pass {
+  background: #C3C3C3;
+  &:after {
+    content: "比价";
+  }
+}
+.is-closed {
+  background: #72BAF9;
+  &:after {
+    content: "关闭";
+  }
+}
+.is-not-active {
+  background: #EB6877;
+  &:after {
+    content: "未中";
+  }
+}
+.need-closed {
+  background: #72BAF9;
+  &:after {
+    content: "手动关闭";
+  }
+}
+.ant-spin-nested-loading {
+  min-height: 50px;
+}
+::selection {
+  background:#72baf9;
+  color:#fff;
+}

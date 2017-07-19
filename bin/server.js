@@ -1,12 +1,14 @@
+const project = require('../config/project.config')
+const debug = require('debug')('app:bin:dev-server')
 const express = require('express')
 const path = require('path')
 const webpack = require('webpack')
-const logger = require('../build/lib/logger')
-const webpackConfig = require('../build/webpack.config')
-const project = require('../project.config')
+const webpackConfig = require('../config/webpack.config')
 const compress = require('compression')
 
 const app = express()
+
+// Apply gzip compression
 app.use(compress())
 
 // ------------------------------------
@@ -15,15 +17,15 @@ app.use(compress())
 if (project.env === 'development') {
   const compiler = webpack(webpackConfig)
 
-  logger.info('Enabling webpack development and HMR middleware')
+  debug('Enabling webpack dev and HMR middleware')
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath  : webpackConfig.output.publicPath,
-    contentBase : path.resolve(project.basePath, project.srcDir),
+    contentBase : project.paths.client(),
     hot         : true,
-    quiet       : false,
-    noInfo      : false,
+    quiet       : project.compiler_quiet,
+    noInfo      : project.compiler_quiet,
     lazy        : false,
-    stats       : 'normal',
+    stats       : project.compiler_stats
   }))
   app.use(require('webpack-hot-middleware')(compiler, {
     path: '/__webpack_hmr'
@@ -33,7 +35,7 @@ if (project.env === 'development') {
   // these files. This middleware doesn't need to be enabled outside
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
-  app.use(express.static(path.resolve(project.basePath, 'public')))
+  app.use(express.static(project.paths.public()))
 
   // This rewrites all routes requests to the root /index.html file
   // (ignoring file requests). If you want to implement universal
@@ -50,7 +52,7 @@ if (project.env === 'development') {
     })
   })
 } else {
-  logger.warn(
+  debug(
     'Server is being run outside of live development mode, meaning it will ' +
     'only serve the compiled application bundle in ~/dist. Generally you ' +
     'do not need an application server for this and can instead use a web ' +
@@ -61,7 +63,9 @@ if (project.env === 'development') {
   // Serving ~/dist by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
-  app.use(express.static(path.resolve(project.basePath, project.outDir)))
+  app.use(express.static(project.paths.dist()))
 }
 
-module.exports = app
+app.listen(project.server_port)
+debug(`Server is now running at http://localhost:${project.server_port}.`)
+

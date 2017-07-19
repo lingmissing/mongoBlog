@@ -1,31 +1,38 @@
-import { applyMiddleware, compose, createStore as createReduxStore } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
+import logger from 'redux-logger'
 
-const createStore = (initialState = {}) => {
+export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
   const middleware = [thunk]
 
+  if (process.env.NODE_ENV === `development`) {
+    middleware.push(logger)
+  }
+
   // ======================================================
   // Store Enhancers
   // ======================================================
   const enhancers = []
+
   let composeEnhancers = compose
 
   if (__DEV__) {
-    if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    if (typeof composeWithDevToolsExtension === 'function') {
+      composeEnhancers = composeWithDevToolsExtension
     }
   }
 
   // ======================================================
   // Store Instantiation and HMR Setup
   // ======================================================
-  const store = createReduxStore(
+  const store = createStore(
     makeRootReducer(),
     initialState,
     composeEnhancers(
@@ -36,7 +43,7 @@ const createStore = (initialState = {}) => {
   store.asyncReducers = {}
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
-  store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
+  store.unsubscribeHistory = hashHistory.listen(updateLocation(store))
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
@@ -47,5 +54,3 @@ const createStore = (initialState = {}) => {
 
   return store
 }
-
-export default createStore

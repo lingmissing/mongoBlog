@@ -1,47 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-import './styles/main.scss'
-import './styles/base.scss'
-import './styles/highlight.scss'
+import AppContainer from './containers/AppContainer'
 
-// Store Initialization
-// ------------------------------------
-const store = createStore(window.__INITIAL_STATE__)
+// ========================================================
+// Store Instantiation
+// ========================================================
+const initialState = window.__INITIAL_STATE__
+const store = createStore(initialState)
 
+// ========================================================
 // Render Setup
-// ------------------------------------
+// ========================================================
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
-  const App = require('./components/App').default
   const routes = require('./routes/index').default(store)
 
-  ReactDOM.render(<App store={store} routes={routes} />, MOUNT_NODE)
+  ReactDOM.render(
+    <AppContainer store={store} routes={routes} />,
+    MOUNT_NODE
+  )
 }
 
-// Development Tools
-// ------------------------------------
+// This code is excluded from production bundle
 if (__DEV__) {
   if (module.hot) {
+    // Development render functions
     const renderApp = render
-    const renderError = error => {
+    const renderError = (error) => {
       const RedBox = require('redbox-react').default
 
       ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
     }
 
+    // Wrap render in try/catch
     render = () => {
       try {
         renderApp()
-      } catch (e) {
-        console.error(e)
-        renderError(e)
+      } catch (error) {
+        console.error(error)
+        renderError(error)
       }
     }
 
     // Setup hot module replacement
-    module.hot.accept(['./components/App', './routes/index'], () =>
+    module.hot.accept('./routes/index', () =>
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()
@@ -50,6 +54,7 @@ if (__DEV__) {
   }
 }
 
-// Let's Go!
-// ------------------------------------
-if (!__TEST__) render()
+// ========================================================
+// Go!
+// ========================================================
+render()
