@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const logger = require('../logger')
-const init = require('./init')
+import mongoose from 'mongoose'
+import logger from '../logger'
+import init from './init'
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -13,7 +13,8 @@ const articleSchema = new Schema({
   date: String,
   tag: String,
   category: String,
-  content: String
+  content: String,
+  punish: Number
 })
 articleSchema.statics.findArticalByPage = function (searchInfo, cb) {
   return this.find(searchInfo.query)
@@ -22,6 +23,9 @@ articleSchema.statics.findArticalByPage = function (searchInfo, cb) {
     .sort({ date: -1 })
     .select('title')
     .exec(cb)
+}
+articleSchema.query.byName = function (name) {
+  return this.find({ name: new RegExp(name, 'i') })
 }
 
 const categorySchema = new Schema({
@@ -49,6 +53,7 @@ const initialize = function () {
       logger.info('Database opens for the first time...')
       var promise = new Promise(resolve => {
         init.map(item => new Models[item.type](item).save())
+        resolve()
       })
       promise
         .then(() => logger.success('Initialize successfully.'))

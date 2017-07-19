@@ -4,6 +4,81 @@
   .aside-artical {
     width: 18%;
     background-color: #3f3f3f;
+    .home-box {
+      padding: 30px 19px 5px 18px;
+      text-align: center;
+    }
+    @at-root .add-cat-box {
+      padding: 0 15px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      .add-cat-btn {
+        font-size: 12px;
+        line-height: 20px;
+        color: #fff;
+        cursor: pointer;
+      }
+      .create-notebook-form {
+        margin: 10px 0 20px 0;
+      }
+      .create-input {
+        width: 100%;
+        height: 35px;
+        box-sizing: border-box;
+        background-color: rgba(180, 180, 180, 0.2);
+        color: #c8c8c8;
+        border: 1px solid #2f2f2f;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        transition: border linear 0.2s, box-shadow linear 0.2s;
+        padding: 4px 6px;
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: 4px;
+        vertical-align: middle;
+        outline: 0;
+      }
+      .create-note-book-btn {
+        display: inline-block;
+        border: 1px solid #34ab20;
+        border-radius: 20px;
+        color: #34ab20;
+        padding: 5px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgba(52, 171, 32, 0.1);
+        }
+      }
+      .cancle-btn {
+        font-size: 14px;
+        display: inline-block;
+        padding: 6px 12px 4px 12px;
+        color: #969696;
+        transition: background-position 0.1s linear;
+        cursor: pointer;
+        &:hover {
+          color: #eee;
+        }
+      }
+    }
+    @at-root .cat-list {
+      font-size: 15px;
+      font-weight: normal;
+      padding: 0;
+      .cat-item {
+        height: 40px;
+        padding: 0 15px;
+        line-height: 40px;
+        color: whitesmoke;
+        cursor: pointer;
+        &.active {
+          background-color: #646464;
+          border-left: 3px solid #ec7259;
+        }
+      }
+    }
   }
   .middle-artical {
     width: 25%;
@@ -12,58 +87,52 @@
   }
   .main-artical {
     flex: 1;
-  }
-}
-.home-box {
-  padding: 30px 19px 5px 18px;
-  text-align: center;
-}
-
-.add-cat-box {
-  padding: 0 15px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  .add-cat-btn {
-    font-size: 12px;
-    line-height: 20px;
-    color: #fff;
-    cursor: pointer;
-  }
-  .create-notebook-form {
-    margin: 10px 0 0 20px;
-  }
-  .create-input {
-    width: 100%;
-    height: 35px;
-    box-sizing: border-box;
-    background-color: rgba(180, 180, 180, 0.2);
-    border-color: #2f2f2f;
-    color: #c8c8c8;
-    border: 1px solid #cccccc;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    transition: border linear 0.2s, box-shadow linear 0.2s;
-
-    display: inline-block;
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 20px;
-    color: #555555;
-    border-radius: 4px;
-    vertical-align: middle;
-  }
-  .create-note-book-btn {
-    display: inline-block;
-    background-color: rgba(52, 171, 32, 0.1);
-    border: 1px solid #34ab20;
-    border-radius: 20px;
-    color: #34ab20;
-    padding: 5px 20px;
-  }
-  .cancle-btn {
-    font-size: 12px;
-    display: inline-block;
-    padding: 6px 12px 4px 12px;
-    color: #eee;
-    transition: background-position 0.1s linear;
+    display: flex;
+    flex-direction: column;
+    @at-root .artical-title {
+      width: 100%;
+      padding: 20px 30px 10px 40px;
+      border-bottom: 1px solid #d9d9d9;
+      input {
+        width: 100%;
+        font-size: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 0;
+        border: 1px solid transparent;
+        appearance: none;
+        outline: 0;
+      }
+    }
+    .artical-control {
+      margin: 0;
+      height: 40px;
+      overflow: hidden;
+      background-color: #dedede;
+      border-bottom: 1px solid #d9d9d9;
+      .control-item {
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        list-style: none;
+      }
+    }
+    @at-root .artical-content {
+      flex: 1;
+      .artical-area {
+        padding: 40px 40px 0;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        color: #2f2f2f;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 30px;
+        outline: 0;
+        border: 1px solid transparent;
+      }
+    }
   }
 }

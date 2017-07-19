@@ -7,18 +7,37 @@ import Fetch from 'root/Fetch'
 export const clearAll = createAction('清除列表信息')
 export const saveCategory = createAction('保存种类信息')
 export const saveArtical = createAction('保存文章信息')
+export const saveArticalDetail = createAction('保存文章详情')
+export const saveArticalChange = createAction('保存文章改变', (e, name) => ({ value: e.target.value, name }))
 
 export const getCatList = () => {
   return dispatch => {
-    Fetch('getCategory').then(response => {
+    Fetch('category/getCategory').then(response => {
       dispatch(saveCategory(response.data))
     })
   }
 }
 export const getArticalByCategory = id => {
   return dispatch => {
-    Fetch('getArticleByTitle', { page: 1, pagesize: 10 }).then(response => {
+    Fetch('artical/getArticleByTitle', { page: 1, pagesize: 10 }).then(response => {
       dispatch(saveArtical(response.data))
+    })
+  }
+}
+
+export const getDetail = id => {
+  return dispatch => {
+    Fetch('artical/getArticleDetail', { id }).then(response => {
+      dispatch(saveArticalDetail(response.data))
+    })
+  }
+}
+
+export const submitArtical = () => {
+  return (dispatch, getState) => {
+    const data = getState().addArtical.artical
+    Fetch('artical/saveArticle', data).then(response => {
+      alert(response.message)
     })
   }
 }
@@ -26,6 +45,9 @@ export const getArticalByCategory = id => {
 export const actions = {
   getCatList,
   getArticalByCategory,
+  saveArticalChange,
+  getDetail,
+  submitArtical,
   clearAll
 }
 
@@ -37,6 +59,20 @@ const ACTION_HANDLERS = {
     ...state,
     categoryList: action.payload
   }),
+  [saveArticalDetail]: (state, action) => ({
+    ...state,
+    artical: action.payload
+  }),
+  [saveArticalChange]: (state, action) => {
+    const { name, value } = action.payload
+    return {
+      ...state,
+      artical: {
+        ...state.artical,
+        [name]: value
+      }
+    }
+  },
   [saveArtical]: (state, action) => ({
     ...state,
     articalInfo: action.payload
@@ -52,7 +88,8 @@ const initialState = {
   articalInfo: {
     result: [],
     total: 0
-  }
+  },
+  artical: {}
 }
 export default function addArticalReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

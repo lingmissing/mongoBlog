@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
+import Models from '../models'
 const router = express.Router()
-const Models = require('../models')
 
 // 用户登录
 router.post('/login', (req, res) => {
@@ -24,3 +24,5 @@ router.post('/login', (req, res) => {
     }
   })
 })
+
+module.exports = router

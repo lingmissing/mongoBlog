@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.scss'
+import './styles/base.scss'
+import './styles/highlight.scss'
 
 // Store Initialization
 // ------------------------------------
@@ -15,10 +17,7 @@ let render = () => {
   const App = require('./components/App').default
   const routes = require('./routes/index').default(store)
 
-  ReactDOM.render(
-    <App store={store} routes={routes} />,
-    MOUNT_NODE
-  )
+  ReactDOM.render(<App store={store} routes={routes} />, MOUNT_NODE)
 }
 
 // Development Tools
@@ -26,7 +25,7 @@ let render = () => {
 if (__DEV__) {
   if (module.hot) {
     const renderApp = render
-    const renderError = (error) => {
+    const renderError = error => {
       const RedBox = require('redbox-react').default
 
       ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
@@ -42,10 +41,7 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept([
-      './components/App',
-      './routes/index',
-    ], () =>
+    module.hot.accept(['./components/App', './routes/index'], () =>
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()

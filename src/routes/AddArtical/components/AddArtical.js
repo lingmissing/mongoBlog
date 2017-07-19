@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import BlogButton from 'components/BlogButton'
+import marked from 'marked'
 import './AddArtical.scss'
+var highlightjs = require('highlight.js')
 
 class AddArtical extends Component {
   static propTypes = {
     getCatList: PropTypes.func,
     addArtical: PropTypes.object,
-    getArticalByCategory: PropTypes.func
+    getArticalByCategory: PropTypes.func,
+    getDetail: PropTypes.func,
+    saveArticalChange: PropTypes.func,
+    submitArtical: PropTypes.func
   }
 
   constructor (props) {
@@ -19,11 +24,30 @@ class AddArtical extends Component {
     this.props.getCatList()
     this.props.getArticalByCategory()
   }
-
-  componentWillUnmount () {}
+  getHtml (content) {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: function (code) {
+        return highlightjs.highlightAuto(code).value
+      }
+    })
+    return marked(content)
+  }
 
   render () {
-    const { addArtical: { categoryList } } = this.props
+    const {
+      addArtical: { categoryList, articalInfo, artical },
+      getDetail,
+      saveArticalChange,
+      submitArtical
+    } = this.props
     return (
       <div className="add-artical">
         <div className="aside-artical">
@@ -43,17 +67,51 @@ class AddArtical extends Component {
                 <span className="cancle-btn">取消</span>
               </div>
             </div>
+            {/* <div dangerouslySetInnerHTML={{ __html: this.getHtml(artical.content || '') }} /> */}
           </div>
           <ul className="cat-list">
             {categoryList.map(item =>
-              <li key={item._id}>
+              <li key={item._id} className="cat-item">
                 {item.name}
               </li>
             )}
           </ul>
         </div>
-        <div className="middle-artical">2</div>
-        <div className="main-artical">3</div>
+        <div className="middle-artical">
+          <div className="create-artical">ss</div>
+          <ul className="artical-list">
+            {articalInfo.result.map(item =>
+              <li key={item._id} onClick={() => getDetail(item._id)}>
+                {item.title}
+              </li>
+            )}
+          </ul>
+        </div>
+        <div className="main-artical">
+          <div className="artical-title">
+            <input type="text" value={artical.title} onChange={e => saveArticalChange(e, 'title')} />
+          </div>
+          <ul className="artical-control">
+            <li className="control-item upload-image">
+              <input type="file" />
+              上传图片
+            </li>
+            <li className="control-item">预览</li>
+            <li className="control-item">
+              {artical.punish ? '未发布' : '已发布'}
+            </li>
+            <li onClick={submitArtical} className="control-item">
+              保存
+            </li>
+          </ul>
+          <div className="artical-content">
+            <textarea
+              className="artical-area"
+              value={artical.content}
+              onChange={e => saveArticalChange(e, 'content')}
+            />
+          </div>
+        </div>
       </div>
     )
   }

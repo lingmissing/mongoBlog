@@ -4,6 +4,7 @@ var init = [
     title: 'Hello World',
     category: 'aa',
     tag: '11,22',
+    punish: 1,
     content: '你好，世界!'
   },
   {

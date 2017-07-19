@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
+import Models from '../models'
 const router = express.Router()
-const Models = require('../models')
 
 // 查询所有种类
 router.post('/getCategory', function (req, res) {
@@ -51,3 +51,5 @@ router.post('/removeCategory', function (req, res) {
     })
   })
 })
+
+module.exports = router

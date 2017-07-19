@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
+import Models from '../models'
 const router = express.Router()
-const Models = require('../models')
 
 function formatDate (date) {
   if (!date) return ''
@@ -35,7 +35,7 @@ function getArtical (searchInfo) {
 }
 // 新增/更改文章
 router.post('/saveArticle', (req, res) => {
-  const { id } = req.body
+  const id = req.body._id
   const data = Object.assign({}, req.body, { date: formatDate(new Date()) })
   if (id) {
     Models.Article.findByIdAndUpdate(id, data, (err, doc) => {
@@ -60,7 +60,7 @@ router.post('/saveArticle', (req, res) => {
   }
 })
 // 删除文章
-router.post('/removeArticle', function (req, res) {
+router.post('/removeArticle', (req, res) => {
   Models.Article.findByIdAndRemove(req.body.id, err => {
     if (err) {
       console.log(err)
@@ -73,7 +73,7 @@ router.post('/removeArticle', function (req, res) {
   })
 })
 // 获取文章标题分页查询
-router.post('/getArticleByTitle', function (req, res) {
+router.post('/getArticleByTitle', (req, res) => {
   const { page, pagesize, title } = req.body
   let query = {}
   if (title) {
@@ -96,7 +96,7 @@ router.post('/getArticleByTitle', function (req, res) {
   )
 })
 // 根据种类查询文章标题
-router.post('/getArticleByCategory', function (req, res) {
+router.post('/getArticleByCategory', (req, res) => {
   const { page, pagesize, category } = req.body
   getArtical({
     query: { category },
@@ -115,7 +115,7 @@ router.post('/getArticleByCategory', function (req, res) {
   )
 })
 // 根据标签查询
-router.post('/getArticleByTag', function (req, res) {
+router.post('/getArticleByTag', (req, res) => {
   // tag: { $regex: tag, $options: 'i' }
   const { page, pagesize, tag } = req.body
   getArtical({
@@ -133,6 +133,18 @@ router.post('/getArticleByTag', function (req, res) {
       res.send(err)
     }
   )
+})
+// 根据id查询单个文档
+router.post('/getArticleDetail', (req, res) => {
+  Models.Article.findOne({ _id: req.body.id }, (err, data) => {
+    if (err) {
+      res.send(err)
+    }
+    res.send({
+      code: 0,
+      data
+    })
+  })
 })
 
 module.exports = router

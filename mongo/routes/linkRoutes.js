@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
+import Models from '../models'
 const router = express.Router()
-const Models = require('../models')
 
 // 查找友情链接
 router.post('/getLink', function (req, res) {
@@ -53,3 +53,4 @@ router.post('/removeLink', function (req, res) {
     })
   })
 })
+module.exports = router

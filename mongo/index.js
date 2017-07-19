@@ -1,11 +1,11 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const routers = require('./routes')
+import express from 'express'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import routers from './routes'
+import path from 'path'
+import multer from 'multer'
+import logger from './logger'
 const app = express()
-const path = require('path')
-const multer = require('multer')
-const logger = require('./logger')
 const resolve = file => path.resolve(__dirname, file)
 
 // 设置端口号
@@ -24,22 +24,22 @@ app.use((req, res, next) => {
   next()
 })
 app.use('/uploads', express.static(resolve('../uploads')))
-app.use(routers.articalRoutes)
-// app.use('/category', routers.categoryRoutes)
-// app.use('/link', routers.linkRoutes)
-// app.use('/user', routers.userRoutes)
+app.use('/artical', routers.articalRoutes)
+app.use('/category', routers.categoryRoutes)
+app.use('/link', routers.linkRoutes)
+app.use('/user', routers.userRoutes)
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
     cb(null, 'uploads/')
   },
-  filename: function (req, file, cb) {
+  filename: (req, file, cb) => {
     const { originalname } = file
-    cb(null, Date.now() + originalname)
+    cb(null, `${Date.now()}${originalname}`)
   }
 })
 
-var upload = multer({ storage })
+const upload = multer({ storage })
 
 app.post('/upload', upload.single('file'), (req, res) => {
   // 没有附带文件
@@ -59,6 +59,6 @@ app.post('/upload', upload.single('file'), (req, res) => {
     message: '上传成功'
   })
 })
-app.listen(app.get('port'), function () {
-  logger.success('apply http://localhost:' + app.get('port'))
+app.listen(app.get('port'), () => {
+  logger.success(`apply http://localhost:${app.get('port')}`)
 })
