@@ -117,9 +117,9 @@ router.post('/getArticleByCategory', (req, res) => {
 // 根据标签查询
 router.post('/getArticleByTag', (req, res) => {
   // tag: { $regex: tag, $options: 'i' }
-  const { page, pagesize, tag } = req.body
+  const { page, pagesize, tagId } = req.body
   getArtical({
-    query: { tag: new RegExp(tag, 'i') },
+    query: { tag: new RegExp(tagId, 'i') },
     page,
     pagesize
   }).then(

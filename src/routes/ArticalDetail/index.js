@@ -1,21 +1,21 @@
 import { injectReducer } from '../../store/reducers'
-import Theme from './containers/ThemeContainer'
-import reducer from './modules/Theme'
+import ArticalDetail from './containers/ArticalDetailContainer'
+import reducer from './modules/ArticalDetail'
 
 export default (store) => ({
-  path: 'theme',
+  path: 'artical-detail',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
         and embed an async module loader (jsonp) when bundling   */
     require.ensure([], (require) => {
       /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'theme', reducer })
+      injectReducer(store, { key: 'articalDetail', reducer })
 
       /*  Return getComponent   */
-      cb(null, Theme)
+      cb(null, ArticalDetail)
 
     /* Webpack named bundle   */
-    }, 'Theme')
+    }, 'ArticalDetail')
   }
 })

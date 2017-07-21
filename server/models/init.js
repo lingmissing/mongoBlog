@@ -12,6 +12,10 @@ var init = [
     name: 'Hello World'
   },
   {
+    type: 'Tag',
+    name: 'tag'
+  },
+  {
     type: 'Link',
     name: 'GITHUB',
     href: 'https://www.github.com'

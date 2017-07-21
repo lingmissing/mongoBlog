@@ -16,6 +16,7 @@ const articleSchema = new Schema({
   content: String,
   punish: Number
 })
+
 articleSchema.statics.findArticalByPage = function (searchInfo, cb) {
   return this.find(searchInfo.query)
     .skip((searchInfo.page - 1) * searchInfo.pagesize)
@@ -31,6 +32,9 @@ articleSchema.query.byName = function (name) {
 const categorySchema = new Schema({
   name: { type: String, required: true }
 })
+const tagSchema = new Schema({
+  tag: { type: String, required: true }
+})
 
 const linkSchema = new Schema({
   name: String,
@@ -42,6 +46,7 @@ const Models = {
   Article: mongoose.model('Article', articleSchema),
   Category: mongoose.model('Category', categorySchema),
   Link: mongoose.model('Link', linkSchema),
+  Tag: mongoose.model('Tag', tagSchema),
   initialized: false
 }
 

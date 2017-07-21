@@ -2,9 +2,9 @@ import express from 'express'
 import Models from '../models'
 const router = express.Router()
 
-// 查询所有种类
-router.post('/getCategory', function (req, res) {
-  Models.Category.find().exec((err, doc) => {
+// 查询所有标签
+router.post('/getAllTag', function (req, res) {
+  Models.Tag.find().exec((err, doc) => {
     if (err) {
       res.send(err)
     }
@@ -14,11 +14,11 @@ router.post('/getCategory', function (req, res) {
     })
   })
 })
-// 添加/修改种类
-router.post('/saveCategory', (req, res) => {
+// 添加/修改标签
+router.post('/saveTag', (req, res) => {
   const { _id } = req.body
   if (_id) {
-    Models.Category.findByIdAndUpdate(_id, req.body, (err, doc) => {
+    Models.Tag.findByIdAndUpdate(_id, req.body, (err, doc) => {
       if (err) {
         res.send(err)
       }
@@ -28,7 +28,7 @@ router.post('/saveCategory', (req, res) => {
       })
     })
   } else {
-    new Models.Category(req.body).save((err, doc) => {
+    new Models.Tag(req.body).save((err, doc) => {
       if (err) {
         res.send(err)
       }
@@ -39,9 +39,9 @@ router.post('/saveCategory', (req, res) => {
     })
   }
 })
-// 删除种类
-router.post('/removeCategory', function (req, res) {
-  Models.Category.findByIdAndRemove(req.body._id, (err, doc) => {
+// 删除标签
+router.post('/removeTag', function (req, res) {
+  Models.Tag.findByIdAndRemove(req.body._id, (err, doc) => {
     if (err) {
       res.send(err)
     }
