@@ -17,7 +17,7 @@ class BlogArtical extends Component {
 
   render () {
     return (
-      <div>
+      <div className="blog-artical-page">
         <Card />
       </div>
     )

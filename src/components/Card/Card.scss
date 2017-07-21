@@ -1,7 +1,8 @@
 .artical-card {
+  width: 700px;
   display: block;
   overflow: hidden;
-  margin-top: 30px;
+  margin-bottom: 30px;
   background-color: #fff;
   transition: all .3s;
   border: 1px solid #f0f0f0;
@@ -11,9 +12,19 @@
   }
   @at-root .artical-header {
     margin: 30px 50px;
-    .update-time {
+    .artical-info {
       font-size: 12px;
       color: #ccc;
+      margin-left: -8px;
+      a {
+        color: #ccc;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .info-detail {
+        margin: 0 8px;
+      }
     }
     .artical-card-title {
       margin-top: 5px;
@@ -35,6 +46,9 @@
           color: #3cb371;
           font-size: 14px;
           transition: all 0.3s;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

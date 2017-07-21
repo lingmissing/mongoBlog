@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import BlogHeader from 'components/BlogHeader'
+import BlogFooter from 'components/BlogFooter'
 import './PageLayout.scss'
 
 class PageLayout extends Component {
@@ -16,6 +17,7 @@ class PageLayout extends Component {
         <div className="page-layout__viewport">
           {children}
         </div>
+        <BlogFooter />
       </div>
     )
   }
