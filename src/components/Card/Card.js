@@ -5,7 +5,9 @@ import { Icon } from 'antd'
 import './Card.scss'
 
 class Card extends Component {
-  static propTypes = {}
+  static propTypes = {
+    data: PropTypes.object
+  }
 
   constructor (props) {
     super(props)
@@ -17,31 +19,30 @@ class Card extends Component {
   componentWillUnmount () {}
 
   render () {
+    const { data } = this.props
     return (
       <artical className="artical-card">
         <header className="artical-header">
           <p className="artical-info">
             <span className="info-detail">
-              <Icon type="calendar" /> 发表于 2016-12-16
+              <Icon type="calendar" /> 发表于 {data.date}
             </span>
             |
             <span className="info-detail">
-              <Icon type="folder" /> 分类于 <Link>chrome插件</Link>
+              <Icon type="folder" /> 分类于 <Link>{data.category}</Link>
             </span>
           </p>
-          <h1 className="artical-card-title">ss</h1>
+          <h1 className="artical-card-title">
+            {data.title}
+          </h1>
         </header>
         <footer className="artical-footer">
           <ul className="tag-list">
-            <li className="tag-item">
-              <Link>hhhh</Link>
-            </li>
-            <li className="tag-item">
-              <Link>hhhh</Link>
-            </li>
-            <li className="tag-item">
-              <Link>hhhh</Link>
-            </li>
+            {data.tag.split(',').map((item, index) =>
+              <li className="tag-item" key="index">
+                <Link>hhhh</Link>
+              </li>
+            )}
           </ul>
         </footer>
       </artical>

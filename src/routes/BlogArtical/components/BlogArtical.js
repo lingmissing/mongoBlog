@@ -4,21 +4,27 @@ import Card from 'components/Card'
 import './BlogArtical.scss'
 
 class BlogArtical extends Component {
-  static propTypes = {}
+  static propTypes = {
+    getArtical: PropTypes.func,
+    blogArtical: PropTypes.func
+  }
 
   constructor (props) {
     super(props)
     this.state = {}
   }
 
-  componentWillMount () {}
+  componentWillMount () {
+    this.props.getArtical(1, 10)
+  }
 
   componentWillUnmount () {}
 
   render () {
+    const { blogArtical: { resultInfo: { result, total } } } = this.props
     return (
       <div className="blog-artical-page">
-        <Card />
+        {result.map(item => <Card key={item._id} data={item} />)}
       </div>
     )
   }

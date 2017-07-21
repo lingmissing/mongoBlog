@@ -22,7 +22,7 @@ articleSchema.statics.findArticalByPage = function (searchInfo, cb) {
     .skip((searchInfo.page - 1) * searchInfo.pagesize)
     .limit(searchInfo.pagesize)
     .sort({ date: -1 })
-    .select('title')
+    .select('title tag category date')
     .exec(cb)
 }
 articleSchema.query.byName = function (name) {
@@ -33,7 +33,7 @@ const categorySchema = new Schema({
   name: { type: String, required: true }
 })
 const tagSchema = new Schema({
-  tag: { type: String, required: true }
+  name: { type: String, required: true }
 })
 
 const linkSchema = new Schema({
