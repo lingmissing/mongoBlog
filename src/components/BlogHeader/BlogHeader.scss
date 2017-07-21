@@ -1,0 +1,29 @@
+.blog-header {
+  padding: 0 50px;
+  height: 120px;
+  background-color: #399c9c;
+  line-height: 120px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 700px;
+  transition: height 1s;
+  .blog-name {
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 120px;
+    float: left;
+  }
+  @at-root .home-list {
+    float: right;
+    .home-item {
+      margin-left: 20px;
+      a {
+        font-size: 14px;
+        display: block;
+        color: #fff;
+        line-height: 120px;
+      }
+    }
+  }
+}

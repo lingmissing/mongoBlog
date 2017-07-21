@@ -4,6 +4,7 @@ import BlogButton from 'components/BlogButton'
 import marked from 'marked'
 import highlightjs from 'highlight.js'
 import EditArtical from './EditArtical'
+import { Icon } from 'antd'
 import './AddArtical.scss'
 
 class AddArtical extends Component {
@@ -82,6 +83,7 @@ class AddArtical extends Component {
                 {categoryList.map(item =>
                   <li key={item._id} className="cat-item">
                     {item.name}
+                    <Icon type="setting" />
                   </li>
                   )}
               </ul>
@@ -115,7 +117,7 @@ class AddArtical extends Component {
                 />
             </div>
             <div
-              className="artical-preview-content"
+              className="artical-preview-content markdown-css"
               dangerouslySetInnerHTML={{ __html: this.getHtml(artical.content || '') }}
               />
           </div>}

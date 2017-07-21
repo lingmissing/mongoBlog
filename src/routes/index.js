@@ -1,15 +1,16 @@
 import PageLayout from 'root/layouts/PageLayout/PageLayout'
-import Home from 'routes/Home'
+import HomeView from 'routes/HomeView'
 import AddArtical from 'routes/AddArtical'
 import BlogArtical from 'routes/BlogArtical'
 import BlogLinks from 'routes/BlogLinks'
 export const createRoutes = store => [
   {
-    path: '/',
+    path: '/archives',
     component: PageLayout,
-    indexRoute: Home,
-    childRoutes: [BlogArtical(store), BlogLinks(store)]
+    indexRoute: BlogArtical(store),
+    childRoutes: [BlogLinks(store)]
   },
+  HomeView(store),
   AddArtical(store)
 ]
 export default createRoutes

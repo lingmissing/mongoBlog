@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
+import BlogHeader from 'components/BlogHeader'
 import './PageLayout.scss'
 
 class PageLayout extends Component {
@@ -11,7 +12,7 @@ class PageLayout extends Component {
     const { children } = this.props
     return (
       <div className="container">
-        <Link to="/add-artical">add-artical</Link>
+        <BlogHeader />
         <div className="page-layout__viewport">
           {children}
         </div>

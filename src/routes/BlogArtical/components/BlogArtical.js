@@ -1,27 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Card from 'components/Card'
 import './BlogArtical.scss'
 
 class BlogArtical extends Component {
-
-  static propTypes = {
-  }
+  static propTypes = {}
 
   constructor (props) {
     super(props)
     this.state = {}
   }
 
-  componentWillMount () {
-  }
+  componentWillMount () {}
 
-  componentWillUnmount () {
-  }
+  componentWillUnmount () {}
 
   render () {
     return (
       <div>
-        <h1>BlogArtical</h1>
+        <Card />
       </div>
     )
   }

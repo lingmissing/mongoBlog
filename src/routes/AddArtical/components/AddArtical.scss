@@ -109,17 +109,50 @@
         outline: 0;
       }
     }
-    .artical-control {
+    @at-root .artical-control {
       margin: 0;
       height: 40px;
       overflow: hidden;
       background-color: #dedede;
       border-bottom: 1px solid #d9d9d9;
+      overflow: hidden;
+      .upload-image-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0;
+        width: 42px;
+        cursor: pointer;
+      }
       .control-item {
         display: inline-block;
         cursor: pointer;
         text-align: center;
         list-style: none;
+        padding: 11px 12px;
+        font-size: 18px;
+        position: relative;
+        &.left {
+          float: left;
+          span {
+            display: block;
+          }
+        }
+        &.right {
+          float: right;
+          font-size: 13px;
+          i {
+            display: inline-block;
+            vertical-align: -webkit-baseline-middle;
+          }
+        }
+        i {
+          display: block;
+          width: 18px;
+          height: 18px;
+          overflow: hidden;
+        }
       }
     }
     @at-root .artical-content {

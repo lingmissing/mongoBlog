@@ -11,6 +11,7 @@ body {
   padding: 0;
   height: 100%;
   overflow: hidden;
+  font-family: PingFang-SC-Regular, Microsoft yahei;
 }
 
 *,
@@ -55,7 +56,7 @@ body {
 .error-tip {
   font-family: PingFangSC-Light, Microsoft yahei;
   font-size: 10px;
-  color: #DD3636;
+  color: #dd3636;
   text-align: center;
   display: block;
   height: 15px;
@@ -77,16 +78,16 @@ body {
   background-image: url(../assets/confirmPassword.png);
 }
 .email-icon {
-  background-image: url(../assets/email.png)
+  background-image: url(../assets/email.png);
 }
 .check-icon {
-  background-image: url(../assets/check.png)
+  background-image: url(../assets/check.png);
 }
 .company-icon {
-  background-image: url(../assets/company.png)
+  background-image: url(../assets/company.png);
 }
 .tax-icon {
-  background-image: url(../assets/number.png)
+  background-image: url(../assets/number.png);
 }
 .go-back-link {
   font-family: PingFangSC-Light, Microsoft yahei;
@@ -114,55 +115,55 @@ body {
   right: 26px;
 }
 .is-new {
-  background: #EB6877;
+  background: #eb6877;
   &:after {
     content: "new";
   }
 }
 .is-reported {
-  background: #72BAF9;
+  background: #72baf9;
   &:after {
     content: "已报";
   }
 }
 .is-completed {
-  background: #72BAF9;
+  background: #72baf9;
   &:after {
     content: "已完成";
   }
 }
 .is-approve {
-  background: #EB6100;
+  background: #eb6100;
   &:after {
     content: "已审";
   }
 }
 .is-wait-approve {
-  background: #A3DD24;
+  background: #a3dd24;
   &:after {
     content: "待审";
   }
 }
 .is-not-pass {
-  background: #C3C3C3;
+  background: #c3c3c3;
   &:after {
     content: "比价";
   }
 }
 .is-closed {
-  background: #72BAF9;
+  background: #72baf9;
   &:after {
     content: "关闭";
   }
 }
 .is-not-active {
-  background: #EB6877;
+  background: #eb6877;
   &:after {
     content: "未中";
   }
 }
 .need-closed {
-  background: #72BAF9;
+  background: #72baf9;
   &:after {
     content: "手动关闭";
   }
@@ -171,6 +172,6 @@ body {
   min-height: 50px;
 }
 ::selection {
-  background:#72baf9;
-  color:#fff;
+  background: #72baf9;
+  color: #fff;
 }
