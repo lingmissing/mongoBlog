@@ -6,6 +6,7 @@ import highlightjs from 'highlight.js'
 import EditArtical from './EditArtical'
 import { Icon } from 'antd'
 import './AddArtical.scss'
+import MarkedContent from '../../../components/MarkedContent'
 
 class AddArtical extends Component {
   static propTypes = {
@@ -116,10 +117,7 @@ class AddArtical extends Component {
                 saveArticalChange={saveArticalChange}
                 />
             </div>
-            <div
-              className="artical-preview-content markdown-css"
-              dangerouslySetInnerHTML={{ __html: this.getHtml(artical.content || '') }}
-              />
+            <MarkedContent className="artical-preview-content" content={artical.content} />
           </div>}
       </div>
     )

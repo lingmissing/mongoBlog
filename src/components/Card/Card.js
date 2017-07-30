@@ -8,6 +8,9 @@ class Card extends Component {
   static propTypes = {
     data: PropTypes.object
   }
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
 
   constructor (props) {
     super(props)
@@ -17,6 +20,10 @@ class Card extends Component {
   componentWillMount () {}
 
   componentWillUnmount () {}
+
+  toDtail () {
+    this.context.router.push(`/archives/artical-detail?id=${this.props.data._id}`)
+  }
 
   render () {
     const { data } = this.props
@@ -32,17 +39,18 @@ class Card extends Component {
               <Icon type="folder" /> 分类于 <Link>{data.category}</Link>
             </span>
           </p>
-          <h1 className="artical-card-title">
+          <h1 className="artical-card-title" onClick={() => this.toDtail()}>
             {data.title}
           </h1>
         </header>
         <footer className="artical-footer">
           <ul className="tag-list">
-            {data.tag.split(',').map((item, index) =>
-              <li className="tag-item" key="index">
-                <Link>hhhh</Link>
-              </li>
-            )}
+            {data.tag &&
+              data.tag.split(',').map((item, index) =>
+                <li className="tag-item" key="index">
+                  <Link>#hhhh</Link>
+                </li>
+              )}
           </ul>
         </footer>
       </artical>

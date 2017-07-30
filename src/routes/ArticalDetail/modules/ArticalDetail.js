@@ -5,23 +5,28 @@ import Fetch from 'root/Fetch'
 // Actions
 // ------------------------------------
 export const clearAll = createAction('清除列表信息')
+export const saveDetail = createAction('保存信息')
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    dispatch(Fetch('_name', {}))
-    .then(response => {
+export const getDetail = id => {
+  return dispatch => {
+    Fetch('artical/getArticleDetail', { id }).then(res => {
+      dispatch(saveDetail(res.data))
     })
   }
 }
 
 export const actions = {
-  clearAll
+  getDetail
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
+  [saveDetail]: (state, action) => ({
+    ...state,
+    data: action.payload
+  }),
   [clearAll]: (state, action) => initialState
 }
 
@@ -29,7 +34,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-
+  data: {}
 }
 export default function articalDetailReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]

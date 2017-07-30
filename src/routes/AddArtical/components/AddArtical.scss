@@ -90,8 +90,11 @@
   }
   .main-artical {
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    .edit-artical {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
     @at-root .artical-title {
       width: 100%;
       padding: 20px 30px 10px 40px;
@@ -181,7 +184,6 @@
   }
   .artical-preview-content {
     flex: 1;
-    background-color: #fcfaf2;
-    padding: 40px 40px 0 40px;
+    overflow-y: auto;
   }
 }

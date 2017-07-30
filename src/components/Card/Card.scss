@@ -6,6 +6,7 @@
   background-color: #fff;
   transition: all .3s;
   border: 1px solid #f0f0f0;
+  cursor: pointer;
   &:hover {
     box-shadow: 0 1px 5px rgba(50, 50, 50, .2);
     border-color: transparent;
@@ -31,6 +32,10 @@
       line-height: 1.5;
       font-size: 24px;
       font-weight: 400;
+      &:hover {
+        color: #9c396b;
+        text-shadow: 1px 1px 1px #ddd;
+      }
     }
   }
   .artical-footer {
@@ -47,7 +52,8 @@
           font-size: 14px;
           transition: all 0.3s;
           &:hover {
-            text-decoration: underline;
+            color: #9c396b;
+            text-shadow: 1px 1px 1px #ddd;
           }
         }
       }
