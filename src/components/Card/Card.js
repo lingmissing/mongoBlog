@@ -1,32 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router'
 import { Icon } from 'antd'
 import './Card.scss'
 
 class Card extends Component {
   static propTypes = {
-    data: PropTypes.object
-  }
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  }
-
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
-
-  componentWillMount () {}
-
-  componentWillUnmount () {}
-
-  toDtail () {
-    this.context.router.push(`/archives/artical-detail?id=${this.props.data._id}`)
+    data: PropTypes.object,
+    articalSearch: PropTypes.func
   }
 
   render () {
-    const { data } = this.props
+    const { data, articalSearch } = this.props
     return (
       <artical className="artical-card">
         <header className="artical-header">
@@ -36,7 +20,10 @@ class Card extends Component {
             </span>
             |
             <span className="info-detail">
-              <Icon type="folder" /> 分类于 <Link>{data.category}</Link>
+              <Icon type="folder" /> 分类于{' '}
+              <span onClick={() => articalSearch({ category: data.category })}>
+                {data.category}
+              </span>
             </span>
           </p>
           <h1 className="artical-card-title" onClick={() => this.toDtail()}>
@@ -46,11 +33,11 @@ class Card extends Component {
         <footer className="artical-footer">
           <ul className="tag-list">
             {data.tag &&
-              data.tag.split(',').map((item, index) =>
-                <li className="tag-item" key="index">
-                  <Link>#hhhh</Link>
+              data.tag.split(',').map((item, index) => (
+                <li className="tag-item" key="index" onClick={() => articalSearch({ tag: item })}>
+                  {`#${item}`}
                 </li>
-              )}
+              ))}
           </ul>
         </footer>
       </artical>

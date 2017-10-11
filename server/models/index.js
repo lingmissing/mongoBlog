@@ -29,24 +29,24 @@ articleSchema.query.byName = function (name) {
   return this.find({ name: new RegExp(name, 'i') })
 }
 
-const categorySchema = new Schema({
-  name: { type: String, required: true }
-})
-const tagSchema = new Schema({
-  name: { type: String, required: true }
-})
+// const categorySchema = new Schema({
+//   name: { type: String, required: true }
+// })
+// const tagSchema = new Schema({
+//   name: { type: String, required: true }
+// })
 
-const linkSchema = new Schema({
-  name: String,
-  href: { type: String, required: true }
-})
+// const linkSchema = new Schema({
+//   name: String,
+//   href: { type: String, required: true }
+// })
 
 const Models = {
   User: mongoose.model('User', userSchema),
   Article: mongoose.model('Article', articleSchema),
-  Category: mongoose.model('Category', categorySchema),
-  Link: mongoose.model('Link', linkSchema),
-  Tag: mongoose.model('Tag', tagSchema),
+  // Category: mongoose.model('Category', categorySchema),
+  // Link: mongoose.model('Link', linkSchema),
+  // Tag: mongoose.model('Tag', tagSchema),
   initialized: false
 }
 

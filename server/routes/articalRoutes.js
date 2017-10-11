@@ -72,12 +72,14 @@ router.post('/removeArticle', (req, res) => {
     }
   })
 })
-// 获取文章标题分页查询
-router.post('/getArticleByTitle', (req, res) => {
-  const { page, pagesize, title } = req.body
+// 获取分页查询
+router.post('/searchArtical', (req, res) => {
+  const { page, pagesize, title, category, tag } = req.body
   let query = {}
   if (title) {
-    query.title = { $regex: title, $options: 'i' }
+    // query.title = { $regex: title, $options: 'i' }
+    // query.category = category
+    query = { category, tag: new RegExp(tag, 'i'), title: { $regex: title, $options: 'i' } }
   }
   getArtical({
     query,
@@ -95,45 +97,45 @@ router.post('/getArticleByTitle', (req, res) => {
     }
   )
 })
-// 根据种类查询文章标题
-router.post('/getArticleByCategory', (req, res) => {
-  const { page, pagesize, category } = req.body
-  getArtical({
-    query: { category },
-    page,
-    pagesize
-  }).then(
-    data => {
-      res.send({
-        code: 0,
-        data
-      })
-    },
-    err => {
-      res.send(err)
-    }
-  )
-})
-// 根据标签查询
-router.post('/getArticleByTag', (req, res) => {
-  // tag: { $regex: tag, $options: 'i' }
-  const { page, pagesize, tagId } = req.body
-  getArtical({
-    query: { tag: new RegExp(tagId, 'i') },
-    page,
-    pagesize
-  }).then(
-    data => {
-      res.send({
-        code: 0,
-        data
-      })
-    },
-    err => {
-      res.send(err)
-    }
-  )
-})
+// // 根据种类查询文章标题
+// router.post('/getArticleByCategory', (req, res) => {
+//   const { page, pagesize, category } = req.body
+//   getArtical({
+//     query: { category },
+//     page,
+//     pagesize
+//   }).then(
+//     data => {
+//       res.send({
+//         code: 0,
+//         data
+//       })
+//     },
+//     err => {
+//       res.send(err)
+//     }
+//   )
+// })
+// // 根据标签查询
+// router.post('/getArticleByTag', (req, res) => {
+//   // tag: { $regex: tag, $options: 'i' }
+//   const { page, pagesize, tagId } = req.body
+//   getArtical({
+//     query: { tag: new RegExp(tagId, 'i') },
+//     page,
+//     pagesize
+//   }).then(
+//     data => {
+//       res.send({
+//         code: 0,
+//         data
+//       })
+//     },
+//     err => {
+//       res.send(err)
+//     }
+//   )
+// })
 // 根据id查询单个文档
 router.post('/getArticleDetail', (req, res) => {
   Models.Article.findOne({ _id: req.body.id }, (err, data) => {

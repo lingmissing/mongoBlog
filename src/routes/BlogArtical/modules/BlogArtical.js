@@ -7,9 +7,9 @@ import Fetch from 'root/Fetch'
 export const clearAll = createAction('清除列表信息')
 export const saveResultInfo = createAction('保存搜索数据')
 
-export const getArtical = (page, pagesize, search) => {
+export const getArtical = (page = 1, search = {}) => {
   return dispatch => {
-    Fetch('artical/getArticleByTitle', { page, pagesize, search }).then(response => {
+    Fetch('artical/searchArtical', { ...search, page }).then(response => {
       dispatch(saveResultInfo(response.data))
     })
   }

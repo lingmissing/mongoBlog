@@ -5,21 +5,16 @@ import Fetch from 'root/Fetch'
 // Actions
 // ------------------------------------
 export const clearAll = createAction('清除列表信息')
-export const saveCategory = createAction('保存种类信息')
 export const saveArtical = createAction('保存文章信息')
 export const saveArticalDetail = createAction('保存文章详情')
-export const saveArticalChange = createAction('保存文章改变', (e, name) => ({ value: e.target.value, name }))
+export const saveArticalChange = createAction('保存文章改变', (e, name) => ({
+  value: e.target.value,
+  name
+}))
 
-export const getCatList = () => {
+export const getArtical = (page = 1) => {
   return dispatch => {
-    Fetch('category/getCategory').then(response => {
-      dispatch(saveCategory(response.data))
-    })
-  }
-}
-export const getArticalByCategory = id => {
-  return dispatch => {
-    Fetch('artical/getArticleByTitle', { page: 1, pagesize: 10 }).then(response => {
+    Fetch('artical/searchArtical', { page }).then(response => {
       dispatch(saveArtical(response.data))
     })
   }
@@ -43,8 +38,7 @@ export const submitArtical = () => {
 }
 
 export const actions = {
-  getCatList,
-  getArticalByCategory,
+  getArtical,
   saveArticalChange,
   getDetail,
   submitArtical,
@@ -55,10 +49,6 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [saveCategory]: (state, action) => ({
-    ...state,
-    categoryList: action.payload
-  }),
   [saveArticalDetail]: (state, action) => ({
     ...state,
     artical: action.payload
@@ -84,7 +74,6 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  categoryList: [],
   articalInfo: {
     result: [],
     total: 0

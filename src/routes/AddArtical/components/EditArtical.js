@@ -16,6 +16,16 @@ class EditArtical extends Component {
         <div className="artical-title">
           <input type="text" value={artical.title} onChange={e => saveArticalChange(e, 'title')} />
         </div>
+        <div className="artical-title">
+          <input
+            type="text"
+            value={artical.category}
+            onChange={e => saveArticalChange(e, 'category')}
+          />
+        </div>
+        <div className="artical-title">
+          <input type="text" value={artical.tag} onChange={e => saveArticalChange(e, 'tag')} />
+        </div>
         <ul className="artical-control">
           <li className="control-item left">
             <input type="file" className="upload-image-input" />
@@ -34,21 +44,29 @@ class EditArtical extends Component {
             </Tooltip>
           </li>
           <li className="control-item right">
-            {artical.punish
-              ? artical._id
-                ? <span>
+            {artical.punish ? (
+              artical._id ? (
+                <span>
                   <Icon type="retweet" />发布更新
-                  </span>
-                : <span>
+                </span>
+              ) : (
+                <span>
                   <Icon type="enter" />发布文章
-                  </span>
-              : <span>
+                </span>
+              )
+            ) : (
+              <span>
                 <Icon type="check" />已发布
-                </span>}
+              </span>
+            )}
           </li>
         </ul>
         <div className="artical-content">
-          <textarea className="artical-area" value={artical.content} onChange={e => saveArticalChange(e, 'content')} />
+          <textarea
+            className="artical-area"
+            value={artical.content}
+            onChange={e => saveArticalChange(e, 'content')}
+          />
         </div>
       </div>
     )

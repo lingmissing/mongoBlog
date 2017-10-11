@@ -15,7 +15,7 @@ class BlogArtical extends Component {
   }
 
   componentWillMount () {
-    this.props.getArtical(1, 10)
+    this.props.getArtical()
   }
 
   componentWillUnmount () {}

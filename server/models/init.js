@@ -7,19 +7,19 @@ var init = [
     punish: 1,
     content: '你好，世界!'
   },
-  {
-    type: 'Category',
-    name: 'Hello World'
-  },
-  {
-    type: 'Tag',
-    name: 'tag'
-  },
-  {
-    type: 'Link',
-    name: 'GITHUB',
-    href: 'https://www.github.com'
-  },
+  // {
+  //   type: 'Category',
+  //   name: 'Hello World'
+  // },
+  // {
+  //   type: 'Tag',
+  //   name: 'tag'
+  // },
+  // {
+  //   type: 'Link',
+  //   name: 'GITHUB',
+  //   href: 'https://www.github.com'
+  // },
   {
     type: 'User',
     name: 'liaoyanling',

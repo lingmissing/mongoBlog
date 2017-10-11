@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 })
 app.use('/uploads', express.static(resolve('../uploads')))
 app.use('/artical', routers.articalRoutes)
-app.use('/category', routers.categoryRoutes)
-app.use('/link', routers.linkRoutes)
+// app.use('/category', routers.categoryRoutes)
+// app.use('/link', routers.linkRoutes)
 app.use('/user', routers.userRoutes)
 
 const storage = multer.diskStorage({
