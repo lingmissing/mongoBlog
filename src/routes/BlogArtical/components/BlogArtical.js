@@ -21,10 +21,12 @@ class BlogArtical extends Component {
   componentWillUnmount () {}
 
   render () {
-    const { blogArtical: { resultInfo: { result } } } = this.props
+    const { getArtical, blogArtical: { resultInfo: { result } } } = this.props
     return (
       <div className="blog-artical-page">
-        {result.map((item, index) => <Card key={index} data={item} />)}
+        {result.map((item, index) => (
+          <Card key={index} data={item} articalSearch={data => getArtical(1, data)} />
+        ))}
       </div>
     )
   }

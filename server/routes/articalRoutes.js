@@ -21,6 +21,7 @@ function getArtical (searchInfo) {
       if (err) {
         reject(err)
       }
+      console.log('searchInfo', searchInfo.query)
       Models.Article.findArticalByPage(searchInfo, (dataError, data) => {
         if (dataError) {
           reject(dataError)
@@ -74,17 +75,21 @@ router.post('/removeArticle', (req, res) => {
 })
 // 获取分页查询
 router.post('/searchArtical', (req, res) => {
-  const { page, pagesize, title, category, tag } = req.body
+  const { page, title, category, tag } = req.body
   let query = {}
+  if (category) {
+    query.category = category
+  }
+  if (tag) {
+    query.tag = { $regex: tag, $options: 'i' }
+  }
   if (title) {
-    // query.title = { $regex: title, $options: 'i' }
-    // query.category = category
-    query = { category, tag: new RegExp(tag, 'i'), title: { $regex: title, $options: 'i' } }
+    query.title = { $regex: title, $options: 'i' }
   }
   getArtical({
     query,
     page,
-    pagesize
+    pagesize: 10
   }).then(
     data => {
       res.send({

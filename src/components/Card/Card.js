@@ -8,6 +8,22 @@ class Card extends Component {
     data: PropTypes.object,
     articalSearch: PropTypes.func
   }
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  componentWillMount () {}
+
+  componentWillUnmount () {}
+
+  toDtail () {
+    this.context.router.push(`/archives/artical-detail?id=${this.props.data._id}`)
+  }
 
   render () {
     const { data, articalSearch } = this.props
@@ -34,7 +50,7 @@ class Card extends Component {
           <ul className="tag-list">
             {data.tag &&
               data.tag.split(',').map((item, index) => (
-                <li className="tag-item" key="index" onClick={() => articalSearch({ tag: item })}>
+                <li className="tag-item" key={index} onClick={() => articalSearch({ tag: item })}>
                   {`#${item}`}
                 </li>
               ))}

@@ -3,7 +3,7 @@
   overflow: hidden;
   margin-top: 30px;
   background-color: #fff;
-  transition: all .3s;
+  transition: all 0.3s;
   .artical-detail-content {
     margin: 50px 0;
     .artical-small-title {
@@ -21,6 +21,19 @@
         color: #9c396b;
         text-shadow: 1px 1px 1px #ddd;
       }
+    }
+  }
+}
+.artical-detail-tag {
+  display: flex;
+  li {
+    padding: 10px 15px 10px 50px;
+    color: #3cb371;
+    font-size: 14px;
+    transition: all 0.3s;
+    &:hover {
+      color: #9c396b;
+      text-shadow: 1px 1px 1px #ddd;
     }
   }
 }

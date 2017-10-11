@@ -25,16 +25,17 @@ class ArticalDetail extends Component {
   componentWillUnmount () {}
 
   render () {
-    const { articalDetail: { data: { title, content, date } } } = this.props
+    const { articalDetail: { data: { title, content, date, category, tag } } } = this.props
     return (
       <div className="artical-detail">
         <div className="artical-detail-content">
           <p className="artical-small-title">
-            <Icon type="calendar" /> 发表于{date}
+            <Icon type="calendar" /> 发表于{date}&nbsp; | &nbsp;<span>分类于{category}</span>
           </p>
-          <h1 className="artical-detail-title">
-            {title}
-          </h1>
+          <h1 className="artical-detail-title">{title}</h1>
+          <ul className="artical-detail-tag">
+            {tag && tag.split(',').map(item => <li key={item}>{`#${item}`}</li>)}
+          </ul>
           <MarkedContent content={content} />
         </div>
       </div>
