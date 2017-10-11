@@ -26,8 +26,9 @@
 }
 .artical-detail-tag {
   display: flex;
+  padding-left: 50px;
   li {
-    padding: 10px 15px 10px 50px;
+    padding: 10px 15px 10px 0px;
     color: #3cb371;
     font-size: 14px;
     transition: all 0.3s;

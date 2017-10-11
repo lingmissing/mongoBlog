@@ -81,7 +81,7 @@ router.post('/searchArtical', (req, res) => {
     query.category = category
   }
   if (tag) {
-    query.tag = { $regex: tag, $options: 'i' }
+    query.tag = new RegExp(tag, 'g')
   }
   if (title) {
     query.title = { $regex: title, $options: 'i' }
